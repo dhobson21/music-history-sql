@@ -43,7 +43,15 @@ WHERE ArtistId = 39;
 
 --Write a SELECT query that provides the song titles, album title, and artist name for all of the data you just entered in. Use the LEFT JOIN keyword sequence to connect the tables, and the WHERE keyword to filter the results to the album and artist you added.
 
-SELECT s.Title, a.Title, ar.ArtistName FROM Song s LEFT JOIN Album a ON s.AlbumId = a.AlbumId LEFT JOIN Artist ar ON a.ArtistId =  ar.ArtistId WHERE s.ArtistId = 28;
+SELECT s.Title as "SongTitle", a.Title AS "AlbumTitle", ar.ArtistName, g.Label AS "GenreLabel"
+FROM Song s
+LEFT JOIN Album a
+ON s.AlbumId = a.AlbumId
+LEFT JOIN Artist ar
+ON s.ArtistId =  ar.ArtistId
+LEFT JOIN Genre g
+ON s.GenreId = g.genreId
+WHERE s.ArtistId = 28;
 
 --Write a SELECT statement to display how many songs exist for each album. You'll need to use the COUNT() function and the GROUP BY keyword sequence.
 SELECT COUNT(*) FROM Song GROUP BY AlbumId;
